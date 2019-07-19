@@ -9,6 +9,11 @@ ax2.plot(x,y)
 
 Exercise 3
 ** Create the plot below by adding two axes to a figure object at [0,0,1,1] and [0.2,0.5,.4,.4]**
+fig = plt.figure()
+ax1 = fig.add_axes([0,0,1,1])
+ax2 = fig.add_axes([0.2,0.5,.4,.4])
+
+
 ** Now use x,y, and z arrays to recreate the plot below. Notice the xlimits and y limits on the inserted plot:**
 
 Exercise 4
