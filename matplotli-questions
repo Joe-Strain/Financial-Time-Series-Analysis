@@ -9,14 +9,30 @@ ax2.plot(x,y)
 
 Exercise 3
 ** Create the plot below by adding two axes to a figure object at [0,0,1,1] and [0.2,0.5,.4,.4]**
+** Now use x,y, and z arrays to recreate the plot below. Notice the xlimits and y limits on the inserted plot:**
+
 fig = plt.figure()
 ax1 = fig.add_axes([0,0,1,1])
-ax2 = fig.add_axes([0.2,0.5,.4,.4])
+ax2 = fig.add_axes([0.2,0.5,0.4,0.4])
 
+ax1.plot(x,z)
+ax1.set_xlim([0,100])
+ax1.set_ylim([0,10000])
+ax1.set_xlabel('X')
+ax1.set_ylabel('Z')
 
-** Now use x,y, and z arrays to recreate the plot below. Notice the xlimits and y limits on the inserted plot:**
+ax2.plot(x,y)
+ax2.set_xlim([20,22])
+ax2.set_ylim([30,50])
+ax2.set_title('zoom')
+ax2.set_xlabel('X')
+ax2.set_ylabel('Y')
 
 Exercise 4
 ** Use plt.subplots(nrows=1, ncols=2) to create the plot below.**
 ** Now plot (x,y) and (x,z) on the axes. Play around with the linewidth and style**
 ** See if you can resize the plot by adding the figsize() argument in plt.subplots() are copying and pasting your previous code.**
+
+fig,axes = plt.subplots(nrows=1, ncols=2,figsize=(15,2))
+axes[0].plot(x,y,color='yellow',lw=4,ls='-.',alpha=0.6)
+axes[1].plot(x,z,marker='x',lw=0.1,ms=20)
