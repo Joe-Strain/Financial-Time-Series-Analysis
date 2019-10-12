@@ -34,3 +34,30 @@ df_allvolume.columns = ['Tesla', 'Ford', 'GM']
 df_allvolume.plot(title='Daily Volume Traded',lw=1)
 plt.legend()
 plt.show()
+
+maxvolumeford = df_allvolume['Ford'].max()
+datemaxvolumeford = df_allvolume['Ford'].idxmax()
+
+print("The largest volume of Ford shares traded in a single day (",maxvolumeford, ") occured on ", datemaxvolumeford)
+print("From searching news articles on the web, around this date, the high Ford trading activity appears to be the result of a surprise profit warning, for 2014, issued by the then CFO Bob Shanks.")
+
+# Visual representation of the total amount of money being traded daily, for each stock
+# Create new column "Total Traded" for the 3 stocks (Open price * Volume)
+df_2tradedtesla = pd.concat([df_tesla, df_tesla["Open"] * df_tesla["Volume"]], axis=1)
+df_2tradedtesla.rename(columns={0:"Total Traded"}, inplace=True)
+
+df_2tradedford = pd.concat([df_ford, df_ford["Open"] * df_ford["Volume"]], axis=1)
+df_2tradedford.rename(columns={0:"Total Traded"}, inplace=True)
+
+df_2tradedGM = pd.concat([df_GM, df_GM["Open"] * df_GM["Volume"]], axis=1)
+df_2tradedGM.rename(columns={0:"Total Traded"}, inplace=True)
+
+
+# Plot this "Total Traded" against the time index
+df_totaltraded = pd.concat([df_2tradedtesla["Total Traded"],df_2tradedford["Total Traded"],df_2tradedGM["Total Traded"]],axis=1)
+df_totaltraded.columns = ["Tesla","Ford","GM"]
+
+ax = df_totaltraded.plot(title="Total Value ($) Traded on NYSE",lw=0.8)
+ax.set_ylabel('Value Traded ($)')
+plt.legend()
+plt.show()
